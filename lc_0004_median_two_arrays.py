@@ -1,5 +1,5 @@
-from typing import List
 import unittest
+from typing import List
 
 
 def median(nums):
@@ -13,9 +13,7 @@ def median_lr(nums, l, r):
 
 
 class Solution:
-
     def findMedianSortedArrays(self, nums1_g: List[int], nums2_g: List[int]) -> float:
-
         def find(nums1, nums2, n1l, n1r, n2l, n2r) -> float:
 
             if n1r + n2r - n1l - n2l < 30:
@@ -66,8 +64,10 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.solution.findMedianSortedArrays([1, 2, 4, 5], [3]), 3)
 
     def test_failing2(self):
-        self.assertEqual(self.solution.findMedianSortedArrays([2], [1, 3, 4, 5, 6, 7, 8, 9, 10]), 5.5)
+        self.assertEqual(
+            self.solution.findMedianSortedArrays([2], [1, 3, 4, 5, 6, 7, 8, 9, 10]), 5.5
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

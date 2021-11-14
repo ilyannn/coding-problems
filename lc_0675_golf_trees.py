@@ -93,6 +93,7 @@ class Solution:
 
     Further improvements probably require A* search
     """
+
     def cutOffTree(self, forest: List[List[int]]) -> int:
         trees = sorted([(-v, p) for p, v in m_enumerate(forest) if v > 1])
         cells = set((p for p, v in m_enumerate(forest) if v > 0))
@@ -122,8 +123,8 @@ class MyTestCase(unittest.TestCase):
         self.solution = Solution()
 
     def test_example(self):
-        self.assertEqual(self.solution.cutOffTree([[1,2,3],[0,0,4],[7,6,5]]), 6)
+        self.assertEqual(self.solution.cutOffTree([[1, 2, 3], [0, 0, 4], [7, 6, 5]]), 6)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
