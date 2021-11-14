@@ -71,7 +71,7 @@ def steps(cells, a, target, target2=None, greedy=False):
             return step1 + step2
 
         visited.update(current)
-        neighbours: set = reduce(set.union, (near_f(c) for c in current), set())
+        neighbours: set = reduce(set.union, (near_f(c) for c in current), set()) # noqa
         current = neighbours.intersection(cells).difference(visited)
 
 
