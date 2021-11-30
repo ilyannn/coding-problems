@@ -1,12 +1,33 @@
+"""140. Word Break II
+
+Given a string s and a dictionary of strings wordDict, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in any order.
+
+Note that the same word in the dictionary may be reused multiple times in the segmentation.
+
+---
+
+Writing: 30 minutes
+Debugging: 5 minutes
+Writing score: 😕😕😕😕😕😕😢🤬🤬
+
+Runtime: 32 ms, faster than 65.92% of Python3 online submissions for Word Break II.
+Memory Usage: 14.7 MB, less than 9.42% of Python3 online submissions for Word Break II.
+"""
+
 from collections import defaultdict
-from typing import List
 from functools import lru_cache
+# 😕 The order of imports was not alphabetic
+from typing import List
 
 memoize = lru_cache(None)
 
+
+# 😕 This should have been two empty lines according to PEP 8
 def factory():
     return defaultdict(factory)
 
+
+# 😕 This should have been two empty lines according to PEP 8
 class Trie:
     def __init__(self, word_list=None):
         self.data = factory()
@@ -58,10 +79,17 @@ assert t.has_prefix("a")
 assert t.has_prefix("abba")
 assert list(t.walk("jabba", 1)) == [3, 5]
 
-def add_spaces(s, a):
-    return " ".join(s[p:c] for c, p in zip(a + [len(s)], [0] + a))
 
-assert add_spaces("catsanddogs", [3, 6]) == "cats and dogs"
+# 😕 This should have been two empty lines according to PEP 8
+# 😢 The function + assertion together had an off-by-one bug
+def add_spaces(s, a):
+    # ✅ This is fine -- I've decided to change the precondition
+    assert a[-1] == len(s)
+    return " ".join(s[p:c] for c, p in zip(a, [0] + a))
+
+
+# 😕 This should have been two empty lines according to PEP 8
+assert add_spaces("catsanddogs", [4, 7, 11]) == "cats and dogs"
 
 
 class Solution:
@@ -71,11 +99,15 @@ class Solution:
         @memoize
         def answer(from_ix):
             if from_ix == len(s):
-                return [""]
+                # 🤬 This was a bug, we meant "there is one choice"
+                return [[]]
+
+            # 😕 This should have been an empty line
             def gen():
                 for ix in words.walk(s, from_ix):
                     for right in answer(ix):
                         yield [ix] + right
             return list(gen())
 
-        return list(add_spaces(s, a for a in answer(0)))
+        # 🤬 This was a bug, the line as written made no sense
+        return [add_spaces(s, a) for a in answer(0)]
