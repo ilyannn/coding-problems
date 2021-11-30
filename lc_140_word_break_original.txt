@@ -1,0 +1,81 @@
+from collections import defaultdict
+from typing import List
+from functools import lru_cache
+
+memoize = lru_cache(None)
+
+def factory():
+    return defaultdict(factory)
+
+class Trie:
+    def __init__(self, word_list=None):
+        self.data = factory()
+        if word_list:
+            for w in word_list:
+                self.add(w)
+
+    def find_prefix(self, prefix, create=False):
+        d = self.data
+        for c in prefix:
+            if c in d or create:
+                d = d[c]
+            else:
+                return None
+        return d
+
+    def add(self, word):
+        self.find_prefix(word, create=True)[None] = True
+
+    def __contains__(self, word):
+        if not isinstance(word, str):
+            return False
+        d = self.find_prefix(word)
+        return (None in d) if d else False
+
+    def has_prefix(self, prefix):
+        return self.find_prefix(prefix) is not None
+
+    def walk(self, s, from_index):
+        """Yields all values of index for which s[from_index:index] is in the trie"""
+        d = self.data
+        for i in range(from_index, len(s)):
+            if None in d:
+                yield i
+            c = s[i]
+            if c not in d:
+                return
+            d = d[c]
+        if None in d:
+            yield len(s)
+
+
+t = Trie(["ab", "abc"])
+t.add("abba")
+assert "ab" in t
+assert "abba" in t
+assert "a" not in t
+assert t.has_prefix("a")
+assert t.has_prefix("abba")
+assert list(t.walk("jabba", 1)) == [3, 5]
+
+def add_spaces(s, a):
+    return " ".join(s[p:c] for c, p in zip(a + [len(s)], [0] + a))
+
+assert add_spaces("catsanddogs", [3, 6]) == "cats and dogs"
+
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        words = Trie(wordDict)
+
+        @memoize
+        def answer(from_ix):
+            if from_ix == len(s):
+                return [""]
+            def gen():
+                for ix in words.walk(s, from_ix):
+                    for right in answer(ix):
+                        yield [ix] + right
+            return list(gen())
+
+        return list(add_spaces(s, a for a in answer(0)))
