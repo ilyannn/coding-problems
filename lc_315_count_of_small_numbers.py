@@ -5,8 +5,12 @@ You are given an integer array nums and you have to return a new counts array. T
 ---
 
 Writing: 25 minutes
-Debugging:  minutes
+Debugging: 3 minutes
+Writing score: 😕😢😢
 
+(without asserts)
+Runtime: 7220 ms, faster than 7.12% of Python3 online submissions for Count of Smaller Numbers After Self.
+Memory Usage: 45.2 MB, less than 13.66% of Python3 online submissions for Count of Smaller Numbers After Self.
 """
 
 
@@ -15,7 +19,8 @@ from typing import List
 
 class Node:
     def __init__(self, vals):
-        assert vals = sorted(vals)
+        # 😢 Typo when writing an assertion
+        assert vals == sorted(vals)
         n = len(vals)
         m = n // 2
         self.val = vals[m]
@@ -25,7 +30,8 @@ class Node:
         self.size = n
         self.test()
 
-    def test():
+    # 😢 Forgot self in the method when writing a test
+    def test(self):
         assert self.lsize + self.rsize + self.count == self.size
 
     def __bool__(self):
@@ -59,10 +65,11 @@ class Node:
         return False
 
 
-n = Node([1, 2, 6, 6, 10])
-assert [n.less_than(i) for i in range(12)] == [0, 0, 1, 2, 2, 2, 2, 4, 4, 4, 4, 5]
-n.pop(10)
-assert [n.less_than(i) for i in range(12)] == [0, 0, 1, 2, 2, 2, 2, 4, 4, 4, 4, 4]
+# 😕 This test name was shadowed in two inner scopes
+t = Node([1, 2, 6, 6, 10])
+assert [t.less_than(i) for i in range(12)] == [0, 0, 1, 2, 2, 2, 2, 4, 4, 4, 4, 5]
+t.pop(10)
+assert [t.less_than(i) for i in range(12)] == [0, 0, 1, 2, 2, 2, 2, 4, 4, 4, 4, 4]
 
 
 class Solution:
