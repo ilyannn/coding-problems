@@ -1,6 +1,10 @@
 """2116. Check if a Parentheses String Can Be Valid
 
 https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/
+
+Runtime: 160 ms (better than 100%)
+Memory Usage: 15.2 MB (better than 100%)
+
 """
 
 import unittest
@@ -10,7 +14,7 @@ class Solution:
     def canBeValid(self, s: str, locked: str) -> bool:
         """Find out if the string can be made into a valid one.
 
-        At each step of the algorithm, the range(minl, maxl + 1, 2])
+        At each step of the algorithm, the range(minl, maxl + 1, 2)
         contains exactly the possible open bracket levels of valid strings
         across all possible arrangements of parentheses in s[:i].
 
