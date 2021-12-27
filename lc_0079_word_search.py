@@ -4,9 +4,10 @@ https://leetcode.com/problems/word-search/
 
 ---
 
-Your runtime beats 99.71 % of python3 submissions.
-Your memory usage beats 46.87 % of python3 submissions.
-
+Submitted three times:
+Runtime: 40 ms, faster than 99.48% of Python3 online submissions for Word Search.
+Runtime: 36 ms, faster than 99.71% of Python3 online submissions for Word Search.
+Runtime: 32 ms, faster than 99.87% of Python3 online submissions for Word Search.
 """
 
 import unittest
