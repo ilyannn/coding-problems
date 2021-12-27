@@ -88,7 +88,8 @@ class MyTestCase(unittest.TestCase):
 
     def test_simple(self):
         assert self.f([["X"]], "X")
-        assert not self.f([["X"]], "Y")
+        assert not \
+            self.f([["X"]], "Y")
 
 
 if __name__ == "__main__":
