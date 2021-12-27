@@ -4,10 +4,7 @@ https://leetcode.com/problems/word-search/
 
 ---
 
-Submitted three times:
-
-Runtime: 40 ms, faster than 99.48% of Python3 online submissions for Word Search.
-Runtime: 36 ms, faster than 99.71% of Python3 online submissions for Word Search.
+Submitted three times, the fastest was:
 Runtime: 32 ms, faster than 99.87% of Python3 online submissions for Word Search.
 """
 
@@ -48,9 +45,9 @@ class Solution:
             if len(board_per_ch[ch]) < k:
                 return False
 
-        for ch in word:
-            board_ch = board_per_ch[ch]
-            cur = board_ch if cur is None else set((p for q in cur for p in neighbors(*q))).intersection(board_ch)
+        cur = board_per_ch[word[0]]
+        for ch in word[1:]:
+            cur = set((p for q in cur for p in neighbors(*q))).intersection(board_per_ch[ch])
             if not cur:
                 return False
 
