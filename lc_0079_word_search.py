@@ -9,9 +9,10 @@ Your memory usage beats 46.87 % of python3 submissions.
 
 """
 
+import unittest
 from collections import defaultdict
 from typing import List
-import unittest
+
 
 # noinspection PyMethodMayBeStatic
 class Solution:
@@ -81,6 +82,7 @@ class MyTestCase(unittest.TestCase):
                        ["S", "F", "C", "S"],
                        ["A", "D", "E", "E"]],
                       "SEE")
+
         assert not self.f([["A", "B", "C", "E"],
                            ["S", "F", "C", "S"],
                            ["A", "D", "E", "E"]],
@@ -88,8 +90,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_simple(self):
         assert self.f([["X"]], "X")
-        assert not \
-            self.f([["X"]], "Y")
+        assert not self.f([["X"]], "Y")
 
 
 if __name__ == "__main__":
