@@ -5,6 +5,7 @@ https://leetcode.com/problems/word-search/
 ---
 
 Submitted three times:
+
 Runtime: 40 ms, faster than 99.48% of Python3 online submissions for Word Search.
 Runtime: 36 ms, faster than 99.71% of Python3 online submissions for Word Search.
 Runtime: 32 ms, faster than 99.87% of Python3 online submissions for Word Search.
