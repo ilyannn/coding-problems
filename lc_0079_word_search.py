@@ -10,7 +10,7 @@ Your memory usage beats 46.87 % of python3 submissions.
 """
 
 import unittest
-from collections import defaultdict
+from collections import Counter, defaultdict
 from typing import List
 
 
@@ -42,8 +42,9 @@ class Solution:
         for p, ch in menumerate():
             board_per_ch[ch].add(p)
 
-        if not all(board_per_ch[ch] for ch in word):
-            return False
+        for ch, k in Counter(word).items():
+            if len(board_per_ch[ch]) < k:
+                return False
 
         for ch in word:
             board_ch = board_per_ch[ch]
