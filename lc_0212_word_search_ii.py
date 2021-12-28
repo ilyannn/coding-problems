@@ -8,6 +8,7 @@ Submitted three times:
 > Runtime: 40 ms, faster than 99.95% of Python3 online submissions for Word Search II.
 > Runtime: 44 ms, faster than 99.86% of Python3 online submissions for Word Search II.
 > Runtime: 44 ms, faster than 99.86% of Python3 online submissions for Word Search II.
+> Memory Usage: 15.1 MB, less than 96.19% of Python3 online submissions for Word Search II.
 
 We use two heuristics before the actual DFS. Overall there are following steps:
 
