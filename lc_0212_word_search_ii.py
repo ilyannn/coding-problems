@@ -6,8 +6,8 @@ https://leetcode.com/problems/word-search-ii/
 
 Submitted three times:
 > Runtime: 40 ms, faster than 99.95% of Python3 online submissions for Word Search II.
-> Runtime: 48 ms, faster than 99.86% of Python3 online submissions for Word Search II.
-> Runtime: 48 ms, faster than 99.86% of Python3 online submissions for Word Search II.
+> Runtime: 44 ms, faster than 99.86% of Python3 online submissions for Word Search II.
+> Runtime: 44 ms, faster than 99.86% of Python3 online submissions for Word Search II.
 
 We use two heuristics before the actual DFS. Overall there are following steps:
 
@@ -21,10 +21,11 @@ As additional optimizations we use the following tricks:
 2. The BFS is performed by iteratively walking a trie.
 """
 
-import unittest
 from collections import Counter, defaultdict
+from functools import cache
 from itertools import chain
 from typing import List
+from unittest import TestCase, main
 
 
 class Trie:
@@ -89,6 +90,7 @@ class Solution:
                 for x, val in enumerate(row):
                     yield B * y + x, val
 
+        @cache
         def neighbors(p):
             """List of neighboring cells"""
             return p + 1, p - 1, p + B, p - B
@@ -112,28 +114,20 @@ class Solution:
                     yield from naive_bfs(value, next_)
 
         def check_word(choices, word):
-            taken = set()
+            def dfs(p, pos, taken):
+                return any(not pos or dfs(q, pos - 1, taken | {p})
+                           for q in grid_by_ch[word[pos]].intersection(neighbors(p)) - taken)
 
-            def dfs(p, left):
-                if not left:
-                    return True
-                taken.add(p)
-                try:
-                    return any(dfs(q, left - 1)
-                               for q in grid_by_ch[word[left - 1]].intersection(neighbors(p)) - taken)
-                finally:
-                    taken.remove(p)
+            return any(dfs(p, len(word) - 2, set()) for p in choices)
 
-            return any(dfs(p, len(word) - 1) for p in choices)
+        #        for choices, word in naive_bfs():
+        #            print(choices, word, check_word(choices, word))
 
-#        for choices, word in naive_bfs():
-#            print(choices, word, check_word(choices, word))
-
-        return [word for choices, word in naive_bfs() if check_word(choices, word)]
+        return [word for choices, word in naive_bfs() if len(word) == 1 or check_word(choices, word)]
 
 
 # noinspection PyMethodMayBeStatic
-class AuxiliaryTestCase(unittest.TestCase):
+class AuxiliaryTestCase(TestCase):
     def test_trie(self):
         t = Trie()
         assert not t
@@ -154,7 +148,7 @@ class AuxiliaryTestCase(unittest.TestCase):
         assert group_by_value([("a", 1), ("b", 2), ("c", 1)]) == {1: {"a", "c"}, 2: {"b"}}
 
 
-class SolutionTestCase(unittest.TestCase):
+class SolutionTestCase(TestCase):
     def setUp(self) -> None:
         self.f = Solution().findWords
 
@@ -188,4 +182,4 @@ class SolutionTestCase(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    main()
