@@ -27,21 +27,21 @@ class NAryNode:
         return parts[0] if len(parts) == 1 else f"({', '.join(parts)})"
 
     def __repr__(self):
-        return f"NAryNode(val={self.val}, children={self.children})"
+        return f"NAryNode(val={repr(self.val)}, children={self.children})"
 
 
-def tuple_to_nary(array):
-    if isinstance(array, int):
-        val, kids = array, []
-    else:
-        val, *kids = array
-    return NAryNode(val, [tuple_to_nary(kid) for kid in kids])
+def tuple_to_nary(data):
+    match data:
+        case (val, *kids):
+            return NAryNode(val, [tuple_to_nary(kid) for kid in kids])
+        case val:
+            return NAryNode(val)
 
 
 assert tuple_to_nary((4, 6)) == NAryNode(4, [NAryNode(6)])
 assert tuple_to_nary((4, (6, 7))) == NAryNode(4, [NAryNode(6, [NAryNode(7)])])
 assert str(tuple_to_nary((4, (6, 7)))) == str((4, (6, 7)))
-
+assert eval(repr(tuple_to_nary(("3", "5")))) == NAryNode("3", [NAryNode("5")])
 
 class BinaryNode:
     def __init__(self, val=0, left=None, right=None):
