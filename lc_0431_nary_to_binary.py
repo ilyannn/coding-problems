@@ -130,7 +130,7 @@ def debug_out(nary):
     nary2 = to_nary(binary)
     print("✅" if nary == nary2 else "❌", end="   ")
     print(nary, binary, nary2, sep=" → ", end="   ")
-    print("{", len(nary), "to", len(binary), "nodes", "}")
+    print("{", len(nary), "→", len(binary), "binary nodes", "}")
 
 
 class MyTestCase(unittest.TestCase):
