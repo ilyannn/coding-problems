@@ -7,11 +7,16 @@ Memory Usage: 15.3 MB, less than 91.43% of Python3 online submissions for Degree
 
 """
 
+from collections import defaultdict
+from typing import List
+import unittest
+
 
 class Solution:
     def findShortestSubArray(self, nums: List[int]) -> int:
         """One-pass solution"""
         count = defaultdict(int)
+
         mini = {}
         leni = {}
         for i, n in enumerate(nums):
@@ -26,6 +31,9 @@ class Solution:
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.f = Solution().findShortestSubArray
+
+    def test_trivial(self):
+        assert self.f([1, 1, 1]) == 3
 
     def test_example(self):
         assert self.f([1, 2, 2, 3, 1]) == 2
