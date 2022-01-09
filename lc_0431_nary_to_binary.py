@@ -6,7 +6,7 @@ import unittest
 
 
 class NAryNode:
-    def __init__(self, val=0, children=None):
+    def __init__(self, val=None, children=None):
         self.val = val
         self.children = children or []
 
@@ -42,6 +42,7 @@ assert tuple_to_nary((4, 6)) == NAryNode(4, [NAryNode(6)])
 assert tuple_to_nary((4, (6, 7))) == NAryNode(4, [NAryNode(6, [NAryNode(7)])])
 assert str(tuple_to_nary((4, (6, 7)))) == str((4, (6, 7)))
 assert eval(repr(tuple_to_nary(("3", "5")))) == NAryNode("3", [NAryNode("5")])
+
 
 class BinaryNode:
     def __init__(self, val=0, left=None, right=None):
