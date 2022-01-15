@@ -8,8 +8,6 @@ from itertools import takewhile
 from typing import List
 import unittest
 
-import lc_0675_golf_trees
-
 
 class Solution1:
     def longestCommonPrefix(self, strs: List[str]) -> str:
