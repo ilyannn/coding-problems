@@ -1,9 +1,4 @@
-"""14. Longest Common Prefix
-
----
-Runtime: 28 ms, faster than 94.99% of Python3 online submissions for Longest Common Prefix.
-Memory Usage: 14.5 MB, less than 24.84% of Python3 online submissions for Longest Common Prefix.
-"""
+"""14. Longest Common Prefix"""
 from itertools import takewhile
 from typing import List
 import unittest
@@ -16,9 +11,8 @@ class Solution1:
 
 class Solution2:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        a = min(strs) + "A"
-        b = max(strs) + "B"
-        return a[:next(i for i, (x, y) in enumerate(zip(a, b)) if x != y)]
+        a, b = min(strs), max(strs)
+        return a[:next((i for i, (x, y) in enumerate(zip(a, b)) if x != y), len(a))]
 
 
 class MyTestCase(unittest.TestCase):
