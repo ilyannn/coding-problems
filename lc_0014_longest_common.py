@@ -1,8 +1,22 @@
+"""14. Longest Common Prefix
+
+---
+Runtime: 28 ms, faster than 94.99% of Python3 online submissions for Longest Common Prefix.
+Memory Usage: 14.5 MB, less than 24.84% of Python3 online submissions for Longest Common Prefix.
+"""
+from itertools import takewhile
 from typing import List
 import unittest
 
+import lc_0675_golf_trees
 
-class Solution:
+
+class Solution1:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        return "".join(s.pop() for s in takewhile(lambda s: len(s) == 1, map(set, zip(*strs))))
+
+
+class Solution2:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         a = min(strs) + "A"
         b = max(strs) + "B"
@@ -11,18 +25,21 @@ class Solution:
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.f = Solution().longestCommonPrefix
+        self.s = [Solution1(), Solution2()]
 
     def test_empty(self):
-        assert self.f(["", "dogs"]) == ""
-        assert self.f(["cats", "dogs"]) == ""
+        for s in self.s:
+            assert s.longestCommonPrefix(["", "dogs"]) == ""
+            assert s.longestCommonPrefix(["cats", "dogs"]) == ""
 
     def test_example(self):
-        assert self.f(["flower","flow","flight"]) == "fl"
-        assert self.f(["dog","racecar","car"]) == ""
+        for s in self.s:
+            assert s.longestCommonPrefix(["flower","flow","flight"]) == "fl"
+            assert s.longestCommonPrefix(["dog","racecar","car"]) == ""
 
     def test_increasing(self):
-        assert self.f(["dog", "dogs"]) == "dog"
+        for s in self.s:
+            assert s.longestCommonPrefix(["dog", "dogs"]) == "dog"
 
 
 if __name__ == "__main__":
