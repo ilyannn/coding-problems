@@ -6,13 +6,15 @@ import unittest
 
 class Solution1:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        return "".join(s.pop() for s in takewhile(lambda s: len(s) == 1, map(set, zip(*strs))))
+        return "".join(
+            s.pop() for s in takewhile(lambda s: len(s) == 1, map(set, zip(*strs)))
+        )
 
 
 class Solution2:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         a, b = min(strs), max(strs)
-        return a[:next((i for i, (x, y) in enumerate(zip(a, b)) if x != y), len(a))]
+        return a[: next((i for i, (x, y) in enumerate(zip(a, b)) if x != y), len(a))]
 
 
 class MyTestCase(unittest.TestCase):
@@ -26,8 +28,8 @@ class MyTestCase(unittest.TestCase):
 
     def test_example(self):
         for s in self.s:
-            assert s.longestCommonPrefix(["flower","flow","flight"]) == "fl"
-            assert s.longestCommonPrefix(["dog","racecar","car"]) == ""
+            assert s.longestCommonPrefix(["flower", "flow", "flight"]) == "fl"
+            assert s.longestCommonPrefix(["dog", "racecar", "car"]) == ""
 
     def test_increasing(self):
         for s in self.s:

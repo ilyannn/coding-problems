@@ -24,7 +24,12 @@ class Solution:
         R = max(16, len(grid[0]) + 2)
 
         def select(z):
-            return {x + y * R for y, row in enumerate(grid) for x, v in enumerate(row) if v == z}
+            return {
+                x + y * R
+                for y, row in enumerate(grid)
+                for x, v in enumerate(row)
+                if v == z
+            }
 
         fresh, rots = select(1), select(2)
 
@@ -37,7 +42,9 @@ class Solution:
             if not rots:
                 return -1
             # If we have some fresh and some just rotten oranges, we compute the next rotting batch
-            rots = fresh.intersection(n for p in rots for n in (p + 1, p - 1, p + R, p - R))
+            rots = fresh.intersection(
+                n for p in rots for n in (p + 1, p - 1, p + R, p - R)
+            )
             fresh -= rots
         # The loop eventually terminates: either the number of elements in fresh goes down,
         # or the process is stopped during the next iteration.

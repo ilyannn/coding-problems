@@ -57,16 +57,22 @@ class Trie:
         return trie and trie.empty_value
 
     def items(self):
-        return self.root.items() if self.empty_value is None else chain((("", self.empty_value),), self.root.items())
+        return (
+            self.root.items()
+            if self.empty_value is None
+            else chain((("", self.empty_value),), self.root.items())
+        )
 
     def __str__(self):
         parts = [f"{ch}: {str(subtrie)}" for ch, subtrie in self.root.items()]
         if self.empty_value is not None:
             parts = [self.empty_value] + parts
-        return '<' + ', '.join(parts) + ">"
+        return "<" + ", ".join(parts) + ">"
 
     def __len__(self):
-        return (self.empty_value is not None) + sum(len(sub) for sub in self.root.values())
+        return (self.empty_value is not None) + sum(
+            len(sub) for sub in self.root.values()
+        )
 
     def __bool__(self):
         return len(self) != 0
@@ -102,7 +108,9 @@ class Solution:
         word_trie = Trie()
         for w in words:
             # Only keep words that are possible
-            if len(w) <= m * n and all(v <= len(grid_by_ch[ch]) for ch, v in Counter(w).items()):
+            if len(w) <= m * n and all(
+                v <= len(grid_by_ch[ch]) for ch, v in Counter(w).items()
+            ):
                 word_trie.add(w, w)
 
         def naive_bfs(trie=word_trie, cur=None):
@@ -116,15 +124,21 @@ class Solution:
 
         def check_word(choices, word):
             def dfs(p, pos, taken):
-                return any(not pos or dfs(q, pos - 1, taken | {p})
-                           for q in grid_by_ch[word[pos]].intersection(neighbors(p)) - taken)
+                return any(
+                    not pos or dfs(q, pos - 1, taken | {p})
+                    for q in grid_by_ch[word[pos]].intersection(neighbors(p)) - taken
+                )
 
             return any(dfs(p, len(word) - 2, set()) for p in choices)
 
         #        for choices, word in naive_bfs():
         #            print(choices, word, check_word(choices, word))
 
-        return [word for choices, word in naive_bfs() if len(word) == 1 or check_word(choices, word)]
+        return [
+            word
+            for choices, word in naive_bfs()
+            if len(word) == 1 or check_word(choices, word)
+        ]
 
 
 # noinspection PyMethodMayBeStatic
@@ -146,7 +160,10 @@ class AuxiliaryTestCase(TestCase):
         assert [("", "won")] == list(t.findtrie("won").items())
 
     def test_group(self):
-        assert group_by_value([("a", 1), ("b", 2), ("c", 1)]) == {1: {"a", "c"}, 2: {"b"}}
+        assert group_by_value([("a", 1), ("b", 2), ("c", 1)]) == {
+            1: {"a", "c"},
+            2: {"b"},
+        }
 
 
 class SolutionTestCase(TestCase):
@@ -160,26 +177,34 @@ class SolutionTestCase(TestCase):
 
     def test_examples(self):
         """From the problem description"""
-        assert set(self.f([
-            ["o", "a", "a", "n"],
-            ["e", "t", "a", "e"],
-            ["i", "h", "k", "r"],
-            ["i", "f", "l", "v"]],
-            words=["oath", "pea", "eat", "rain"])) == {"eat", "oath"}
+        assert set(
+            self.f(
+                [
+                    ["o", "a", "a", "n"],
+                    ["e", "t", "a", "e"],
+                    ["i", "h", "k", "r"],
+                    ["i", "f", "l", "v"],
+                ],
+                words=["oath", "pea", "eat", "rain"],
+            )
+        ) == {"eat", "oath"}
 
-        assert self.f([
-            ["a", "b"],
-            ["c", "d"]],
-            words=["abcb"]) == []
+        assert self.f([["a", "b"], ["c", "d"]], words=["abcb"]) == []
 
     def test_crosses(self):
         """Here the word can only be found on board if we take the letter 'a' twice."""
-        assert self.f([
-            ["o", "b", "a", "n"],
-            ["e", "t", "a", "e"],
-            ["i", "h", "k", "r"],
-            ["i", "f", "l", "v"]],
-            words=["kata"]) == []
+        assert (
+            self.f(
+                [
+                    ["o", "b", "a", "n"],
+                    ["e", "t", "a", "e"],
+                    ["i", "h", "k", "r"],
+                    ["i", "f", "l", "v"],
+                ],
+                words=["kata"],
+            )
+            == []
+        )
 
 
 if __name__ == "__main__":

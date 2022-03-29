@@ -51,7 +51,11 @@ class BinaryNode:
         self.right = right
 
     def __eq__(self, other):
-        if not hasattr(other, "val") or not hasattr(other, "left") or not hasattr(other, "right"):
+        if (
+            not hasattr(other, "val")
+            or not hasattr(other, "left")
+            or not hasattr(other, "right")
+        ):
             return False
         if self.val != other.val:
             return False
@@ -134,7 +138,6 @@ def debug_out(nary):
 
 
 class MyTestCase(unittest.TestCase):
-
     def test_empty(_):
         assert to_binary(None) is None
         assert to_nary(None) is None
@@ -145,7 +148,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_simple(_):
         for n in range(10):
-            simple = NAryNode(n ** 3, [NAryNode(i ** 2 + 5) for i in range(n)])
+            simple = NAryNode(n**3, [NAryNode(i**2 + 5) for i in range(n)])
             try:
                 assert to_nary(to_binary(simple)) == simple
             except AssertionError:

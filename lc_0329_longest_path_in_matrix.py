@@ -52,7 +52,7 @@ class Solution:
                     incoming.add(q)
 
         def forward(s):
-            return { q for p in s for q in edges[p] }  # 😕 Whitespace syntax
+            return {q for p in s for q in edges[p]}  # 😕 Whitespace syntax
 
         cur -= incoming
 
@@ -61,5 +61,3 @@ class Solution:
             if not cur:
                 return step
             cur = forward(cur)
-
-

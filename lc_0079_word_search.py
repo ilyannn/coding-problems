@@ -47,7 +47,9 @@ class Solution:
 
         cur = board_per_ch[word[0]]
         for ch in word[1:]:
-            cur = set((p for q in cur for p in neighbors(*q))).intersection(board_per_ch[ch])
+            cur = set((p for q in cur for p in neighbors(*q))).intersection(
+                board_per_ch[ch]
+            )
             if not cur:
                 return False
 
@@ -59,9 +61,13 @@ class Solution:
             c = word[remains - 1]
             visited.add(point)
             try:
-                return any((dfs(remains - 1, q)
-                            for q in neighbors(*point)
-                            if board_at(q) == c and q not in visited))
+                return any(
+                    (
+                        dfs(remains - 1, q)
+                        for q in neighbors(*point)
+                        if board_at(q) == c and q not in visited
+                    )
+                )
             finally:
                 visited.remove(point)
 
@@ -73,20 +79,17 @@ class MyTestCase(unittest.TestCase):
         self.f = Solution().exist
 
     def test_examples(self):
-        assert self.f([["A", "B", "C", "E"],
-                       ["S", "F", "C", "S"],
-                       ["A", "D", "E", "E"]],
-                      "ABCCED")
+        assert self.f(
+            [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCCED"
+        )
 
-        assert self.f([["A", "B", "C", "E"],
-                       ["S", "F", "C", "S"],
-                       ["A", "D", "E", "E"]],
-                      "SEE")
+        assert self.f(
+            [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "SEE"
+        )
 
-        assert not self.f([["A", "B", "C", "E"],
-                           ["S", "F", "C", "S"],
-                           ["A", "D", "E", "E"]],
-                          "ABCB")
+        assert not self.f(
+            [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCB"
+        )
 
     def test_simple(self):
         assert self.f([["X"]], "X")

@@ -53,14 +53,18 @@ def sum_grid(grid, stampWidth, stampHeight, as_list=False):
         yield list(sum_row(s, stampWidth))
 
 
-assert list(sum_grid([[1, 0, 0, 1, 1], [1, 0, 0, 1, 1]], 2, 2, as_list=True)) == [[2, 0, 2, 4]]
-assert list(sum_grid([[1, 0, 0, 0, 1],
-                      [1, 1, 0, 1, 1],
-                      [0, 0, 0, 1, 0]], 1, 3, as_list=True)) == [[2, 1, 0, 2, 2]]
+assert list(sum_grid([[1, 0, 0, 1, 1], [1, 0, 0, 1, 1]], 2, 2, as_list=True)) == [
+    [2, 0, 2, 4]
+]
+assert list(
+    sum_grid([[1, 0, 0, 0, 1], [1, 1, 0, 1, 1], [0, 0, 0, 1, 0]], 1, 3, as_list=True)
+) == [[2, 1, 0, 2, 2]]
 
 
 class Solution:
-    def possibleToStamp(self, grid: List[List[int]], stampHeight: int, stampWidth: int) -> bool:
+    def possibleToStamp(
+        self, grid: List[List[int]], stampHeight: int, stampWidth: int
+    ) -> bool:
         m, n = len(grid), len(grid[0])
 
         if n < stampWidth or m < stampHeight:
@@ -70,14 +74,20 @@ class Solution:
         def stamp_rows():
             for s_row in sum_grid(grid, stampWidth, stampHeight):
                 # Put stamps wherever possible
-                yield [0] * (stampWidth - 1) + [not x for x in s_row] + [0] * (stampWidth - 1)
+                yield [0] * (stampWidth - 1) + [not x for x in s_row] + [0] * (
+                    stampWidth - 1
+                )
 
         #        for row in stamp_rows():
         #            print(*row)
 
         def stamps_at_point():
             zero_row = [0] * (n + stampWidth - 1)
-            sgrid = [zero_row] * (stampHeight - 1) + list(stamp_rows()) + [zero_row] * (stampHeight - 1)
+            sgrid = (
+                [zero_row] * (stampHeight - 1)
+                + list(stamp_rows())
+                + [zero_row] * (stampHeight - 1)
+            )
             return sum_grid(sgrid, stampWidth, stampHeight)
 
         #        for r in zip(grid, stamps_at_point()):
@@ -95,8 +105,12 @@ class MyTestCase(unittest.TestCase):
         assert not self.f([[1, 1, 1], [1, 0, 1]], 3, 2)
 
     def test_examples(self):
-        assert self.f([[1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]], 4, 3)
-        assert not self.f([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]], 2, 2)
+        assert self.f(
+            [[1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]], 4, 3
+        )
+        assert not self.f(
+            [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]], 2, 2
+        )
 
     def test_square(self):
         assert self.f([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]], 1, 1)
@@ -104,7 +118,9 @@ class MyTestCase(unittest.TestCase):
         assert self.f([[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]], 2, 2)
         assert self.f([[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]], 2, 3)
         assert self.f([[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]], 3, 3)
-        assert not self.f([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]], 3, 3)
+        assert not self.f(
+            [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 0, 0, 1]], 3, 3
+        )
 
 
 if __name__ == "__main__":

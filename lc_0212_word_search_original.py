@@ -11,7 +11,7 @@ class Solution:
 
         def neighbors(p):
             """List of neighboring cells"""
-            return (p+1, p-1, p+R, p-R)
+            return (p + 1, p - 1, p + R, p - R)
 
         grid = defaultdict(lambda: None) | dict(g_enumerate())
         chars = set(grid.values())
@@ -35,18 +35,18 @@ class Solution:
                         if i == len(w) - 1:
                             yield p1, w
                         else:
-                            q.push((p1, i+1, w))
+                            q.push((p1, i + 1, w))
 
         found = list(bfs())
         print(found)
 
         answer = set()
 
-        def dfs(p, w, check = -1, seen=set()):
+        def dfs(p, w, check=-1, seen=set()):
             if check == -len(w):
                 answer.add(w)
             if w in answer:
-                return # Don't repeat ourselves
+                return  # Don't repeat ourselves
             seen.add(p)
             try:
                 for p1 in neighbors(p):

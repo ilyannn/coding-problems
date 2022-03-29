@@ -25,7 +25,7 @@ class Node:
         m = n // 2
         self.val = vals[m]
         self.left = Node(vals[:m]) if m > 0 else None
-        self.right = Node(vals[m+1:]) if m < n - 1 else None
+        self.right = Node(vals[m + 1 :]) if m < n - 1 else None
         self.count = 1
         self.size = n
         self.test()
@@ -49,7 +49,11 @@ class Node:
         if val <= self.val:
             return self.left.less_than(val) if self.left else 0
         else:
-            return self.lsize + self.count + (self.right.less_than(val) if self.right else 0)
+            return (
+                self.lsize
+                + self.count
+                + (self.right.less_than(val) if self.right else 0)
+            )
 
     def pop(self, val):
         if self.left and self.val >= val and self.left.pop(val):

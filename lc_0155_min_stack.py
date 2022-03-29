@@ -14,35 +14,35 @@ import unittest
 
 
 class MinStack:
-        """Single stack solution
+    """Single stack solution
 
-        Runtime: 40 ms, faster than 99.99% of Python3 online submissions for Min Stack.
-        Memory Usage: 17.9 MB, less than 93.47% of Python3 online submissions for Min Stack.
-        """
+    Runtime: 40 ms, faster than 99.99% of Python3 online submissions for Min Stack.
+    Memory Usage: 17.9 MB, less than 93.47% of Python3 online submissions for Min Stack.
+    """
 
-        def __init__(self):
-            self.deltas = []
-            self.min = None
+    def __init__(self):
+        self.deltas = []
+        self.min = None
 
-        def push(self, val: int) -> None:
-            if not self.deltas:
-                self.min = val
-            d = val - self.min
-            self.deltas.append(d)
-            if d < 0:
-                self.min += d
+    def push(self, val: int) -> None:
+        if not self.deltas:
+            self.min = val
+        d = val - self.min
+        self.deltas.append(d)
+        if d < 0:
+            self.min += d
 
-        def pop(self) -> None:
-            d = self.deltas.pop()
-            if d < 0:
-                self.min -= d
-            return self.min + d
+    def pop(self) -> None:
+        d = self.deltas.pop()
+        if d < 0:
+            self.min -= d
+        return self.min + d
 
-        def top(self) -> int:
-            return self.min + max(0, self.deltas[-1])
+    def top(self) -> int:
+        return self.min + max(0, self.deltas[-1])
 
-        def getMin(self) -> int:
-            return self.min
+    def getMin(self) -> int:
+        return self.min
 
 
 class MyTestCase(unittest.TestCase):

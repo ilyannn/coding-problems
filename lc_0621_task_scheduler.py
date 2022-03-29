@@ -13,11 +13,13 @@ class Solution:
             if not task_list:
                 return time
 
-            tx, ix = max(((t, i) for i, (t, b) in enumerate(task_list) if time >= b),
-                         default=(None, None))
+            tx, ix = max(
+                ((t, i) for i, (t, b) in enumerate(task_list) if time >= b),
+                default=(None, None),
+            )
 
             if ix is not None:
-                task_list[ix: ix + 1] = [(tx - 1, time + n + 1)] if tx > 1 else []
+                task_list[ix : ix + 1] = [(tx - 1, time + n + 1)] if tx > 1 else []
 
 
 class MyTestCase(unittest.TestCase):
@@ -27,7 +29,10 @@ class MyTestCase(unittest.TestCase):
     def test_examples(self):
         assert self.f(["A", "A", "A", "B", "B", "B"], 2) == 8
         assert self.f(["A", "A", "A", "B", "B", "B"], 0) == 6
-        assert self.f(["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2) == 16
+        assert (
+            self.f(["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2)
+            == 16
+        )
 
     def test_simple(self):
         assert self.f(["A"], 100) == 1

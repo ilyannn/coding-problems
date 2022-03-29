@@ -92,7 +92,6 @@ class Levels:
 
 
 class LFUCache:
-
     def __init__(self, capacity: int):
         self.use = Levels(LinkedList)
         self.nodes = {}

@@ -16,6 +16,7 @@ Memory Usage: 14.7 MB, less than 9.42% of Python3 online submissions for Word Br
 
 from collections import defaultdict
 from functools import lru_cache
+
 # 😕 The order of imports was not alphabetic
 from typing import List
 
@@ -107,6 +108,7 @@ class Solution:
                 for ix in words.walk(s, from_ix):
                     for right in answer(ix):
                         yield [ix] + right
+
             return list(gen())
 
         # 🤬 This was a bug, the line as written made no sense

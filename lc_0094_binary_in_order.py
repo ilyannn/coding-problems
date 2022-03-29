@@ -24,7 +24,6 @@ from typing import List, Optional
 
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-
         def take_left(node):
             while node:
                 yield node
