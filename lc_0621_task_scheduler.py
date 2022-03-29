@@ -29,10 +29,7 @@ class MyTestCase(unittest.TestCase):
     def test_examples(self):
         assert self.f(["A", "A", "A", "B", "B", "B"], 2) == 8
         assert self.f(["A", "A", "A", "B", "B", "B"], 0) == 6
-        assert (
-            self.f(["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2)
-            == 16
-        )
+        assert self.f(["A"] * 6 + ["B", "C", "D", "E", "F", "G"], 2) == 16
 
     def test_simple(self):
         assert self.f(["A"], 100) == 1
