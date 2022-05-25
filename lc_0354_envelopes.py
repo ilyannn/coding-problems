@@ -1,14 +1,15 @@
 from bisect import bisect_left
+from math import inf
 from typing import List
 import unittest
 
 
 class SolutionShort:
     def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
-        m = [float("inf")] * len(envelopes)
+        m = [inf] * (len(envelopes) + 1)
         for _, h in sorted(envelopes, key=lambda x: (x[0], -x[1])):
             m[bisect_left(m, h)] = h
-        return sum(v < float("inf") for v in m)
+        return m.index(inf)
 
 
 def set_val(a, v, i):
