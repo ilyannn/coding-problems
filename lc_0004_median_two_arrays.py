@@ -15,7 +15,6 @@ def median_lr(nums, l, r):
 class Solution:
     def findMedianSortedArrays(self, nums1_g: List[int], nums2_g: List[int]) -> float:
         def find(nums1, nums2, n1l, n1r, n2l, n2r) -> float:
-
             if n1r + n2r - n1l - n2l < 30:
                 return median(sorted(nums1[n1l:n1r] + nums2[n2l:n2r]))
 

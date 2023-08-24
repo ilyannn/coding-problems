@@ -2,7 +2,6 @@ import bisect
 from itertools import *
 from string import *
 from collections import *
-from sortedcontainers import SortedList
 import unittest
 
 

@@ -6,7 +6,6 @@ import unittest
 
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
-
         task_list = [(v, 0) for v in Counter(tasks).values()]
 
         for time in count():

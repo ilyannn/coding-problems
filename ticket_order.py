@@ -51,8 +51,12 @@ class Solution:
                 tick = t - 1
                 now += (tick - ct) * (n - done.count)
                 person = 0
-            answer[i] = answerp + left * (
-                    t - tp) + "number of people in the tree <= i" - "number of people in the tree < ip"
+            answer[i] = (
+                answerp
+                + left * (t - tp)
+                + "number of people in the tree <= i"
+                - "number of people in the tree < ip"
+            )
             done.add(i)
         return answer
 

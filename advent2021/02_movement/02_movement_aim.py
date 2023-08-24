@@ -5,7 +5,7 @@ from functools import reduce
 commands = {
     "forward": lambda x: lambda p: (p[0] + p[2] * x, p[1] + x, p[2]),
     "down": lambda x: lambda p: (p[0], p[1], p[2] + x),
-    "up": lambda x: lambda p: (p[0], p[1], p[2] - x)
+    "up": lambda x: lambda p: (p[0], p[1], p[2] - x),
 }
 
 

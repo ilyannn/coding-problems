@@ -13,7 +13,7 @@ class SolutionShort:
 
 
 def set_val(a, v, i):
-    a[i:i + 1] = [v]
+    a[i : i + 1] = [v]
 
 
 class SolutionReadable:
@@ -31,16 +31,18 @@ class MyTestCase(unittest.TestCase):
 
     def test_examples(self):
         for solution in self.solutions:
-            assert solution.maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]) == 3
-            assert solution.maxEnvelopes([[1,1],[1,1],[1,1]]) == 1
+            assert solution.maxEnvelopes([[5, 4], [6, 4], [6, 7], [2, 3]]) == 3
+            assert solution.maxEnvelopes([[1, 1], [1, 1], [1, 1]]) == 1
 
     def test_simple(self):
         for solution in self.solutions:
-            assert solution.maxEnvelopes([[3,5]]) == 1
+            assert solution.maxEnvelopes([[3, 5]]) == 1
 
     def test_complex(self):
         for solution in self.solutions:
-            assert solution.maxEnvelopes([[100,50],[80, 60], [30, 30], [50,100]]) == 2
+            assert (
+                solution.maxEnvelopes([[100, 50], [80, 60], [30, 30], [50, 100]]) == 2
+            )
 
 
 if __name__ == "__main__":

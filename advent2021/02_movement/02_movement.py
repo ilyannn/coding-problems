@@ -3,9 +3,12 @@ import sys
 from functools import reduce
 
 commands = {
-    "forward": lambda x: lambda p: (p[0], p[1] + x),  # increases the horizontal position by X units.
+    "forward": lambda x: lambda p: (
+        p[0],
+        p[1] + x,
+    ),  # increases the horizontal position by X units.
     "down": lambda x: lambda p: (p[0] + x, p[1]),  # increases the depth by X units.
-    "up": lambda x: lambda p: (p[0] - x, p[1])  # decreases the depth by X units.
+    "up": lambda x: lambda p: (p[0] - x, p[1]),  # decreases the depth by X units.
 }
 
 
