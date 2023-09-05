@@ -1,25 +1,42 @@
 """14. Longest Common Prefix"""
-from itertools import takewhile
+from itertools import takewhile, zip_longest
 from typing import List
 import unittest
 
 
 class Solution1:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
+    @staticmethod
+    def longestCommonPrefix(strs: List[str]) -> str:
         return "".join(
             s.pop() for s in takewhile(lambda s: len(s) == 1, map(set, zip(*strs)))
         )
 
 
 class Solution2:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
+    @staticmethod
+    def longestCommonPrefix(strs: List[str]) -> str:
         a, b = min(strs), max(strs)
         return a[: next((i for i, (x, y) in enumerate(zip(a, b)) if x != y), len(a))]
 
 
+class Solution3:
+    @staticmethod
+    def longestCommonPrefix(strs: List[str]) -> str:
+        return strs[0][
+            : next(
+                (
+                    i
+                    for i, (x, y) in enumerate(zip_longest(min(strs), max(strs)))
+                    if x != y
+                ),
+                len(strs[0]),
+            )
+        ]
+
+
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.s = [Solution1(), Solution2()]
+        self.s = [Solution1(), Solution2(), Solution3()]
 
     def test_empty(self):
         for s in self.s:
@@ -34,6 +51,10 @@ class MyTestCase(unittest.TestCase):
     def test_increasing(self):
         for s in self.s:
             assert s.longestCommonPrefix(["dog", "dogs"]) == "dog"
+
+    def test_decreasing(self):
+        for s in self.s:
+            assert s.longestCommonPrefix(["ab", "a"]) == "a"
 
 
 if __name__ == "__main__":
