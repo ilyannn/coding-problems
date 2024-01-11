@@ -2,7 +2,7 @@
 <project version="4">
   <component name="Black">
     <option name="enabledOnSave" value="true" />
-    <option name="sdkUUID" value="cae68bab-8111-4259-a385-cecebe03e3b7" />
+    <option name="sdkName" value="/usr/bin/python3.11 (6)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (coding-problems)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="/usr/bin/python3.11 (6)" project-jdk-type="Python SDK" />
 </project>
