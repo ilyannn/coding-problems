@@ -3,8 +3,7 @@ import operator
 from itertools import pairwise
 from math import factorial
 
-
-## METHOD 1
+# METHOD 1
 
 
 class Reader:
@@ -106,7 +105,7 @@ def analyze1(expression):
     return int(consume_brackets())
 
 
-## METHOD 2
+# METHOD 2
 
 
 class PostfixConverter:
@@ -120,7 +119,7 @@ class PostfixConverter:
         self.whitespace = whitespace
         self.open = {brackets[i]: brackets[i + 1] for i in range(0, len(brackets), 2)}
         self.close = {brackets[i + 1]: brackets[i] for i in range(0, len(brackets), 2)}
-        
+
         operator_order = operator_order or []
         precedence = {}
         for p, ops in enumerate(reversed(operator_order)):
@@ -160,7 +159,7 @@ class PostfixConverter:
                 p = self.precedence_unary[ch]
             elif ch in self.precedence:
                 p = self.precedence[ch]
-            else: 
+            else:
                 yield ch
                 prefix_context = False
                 continue

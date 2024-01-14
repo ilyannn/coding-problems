@@ -1,7 +1,7 @@
+import unittest
 from collections import Counter
 from itertools import count
 from typing import List
-import unittest
 
 
 class Solution:

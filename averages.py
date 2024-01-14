@@ -1,6 +1,6 @@
 import re
 import unittest
-from math import nan, isnan
+from math import isnan, nan
 from statistics import mean
 from typing import Optional
 
@@ -197,7 +197,9 @@ class TestParsing(unittest.TestCase):
 
     def test_dump_arguments(self):
         self.assertEqual(dump_arguments([("arg", 0.056)], accuracy=2), "arg=0.06")
-        self.assertEqual(dump_arguments([("a", 1), ("b", .24)], accuracy=1), "a=1.0 b=0.2")
+        self.assertEqual(
+            dump_arguments([("a", 1), ("b", 0.24)], accuracy=1), "a=1.0 b=0.2"
+        )
 
 
 if __name__ == "__main__":

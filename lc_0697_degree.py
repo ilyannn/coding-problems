@@ -7,9 +7,9 @@ Memory Usage: 15.3 MB, less than 91.43% of Python3 online submissions for Degree
 
 """
 
+import unittest
 from collections import defaultdict
 from typing import List
-import unittest
 
 
 class Solution:

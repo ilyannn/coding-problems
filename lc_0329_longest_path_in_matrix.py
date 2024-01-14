@@ -16,13 +16,14 @@ Memory Usage: 22.3 MB, less than 5.23% of Python3 online submissions for Longest
 """
 
 from collections import defaultdict
+from itertools import count
 from typing import List
 
 
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         m, n = len(matrix), len(matrix[0])
-        R = n + 2  # 😕 Now unused
+        _ = n + 2  # 😕 Now unused
 
         # 😕 This has been rewritten back to regular pairs
         def m_enumerate():

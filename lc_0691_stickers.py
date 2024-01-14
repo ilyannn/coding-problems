@@ -7,10 +7,10 @@ Runtime: 213 ms, faster than 92.46% of Python3 online submissions for Stickers t
 Memory Usage: 15.3 MB, less than 28.82% of Python3 online submissions for Stickers to Spell Word.
 """
 
+import unittest
 from collections import Counter
 from functools import cache
 from typing import List
-import unittest
 
 
 def subtract(a, b, n=1):

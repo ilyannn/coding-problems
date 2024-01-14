@@ -7,9 +7,9 @@ Runtime: 44 ms, faster than 96.26% of Python3 online submissions for Rotting Ora
 Memory Usage: 14.4 MB, less than 39.37% of Python3 online submissions for Rotting Oranges.
 
 """
+import unittest
 from itertools import count
 from typing import List
-import unittest
 
 
 class Solution:

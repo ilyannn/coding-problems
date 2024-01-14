@@ -1,5 +1,5 @@
-import sys
 from functools import cache
+
 
 def main():
     n, m = (int(v) for v in input().split())
@@ -14,12 +14,12 @@ def main():
     def answer(x, y):
         if x == 0 and y == 1:
             return 0
-        if not (1 <= x <= m and 1 <= y <=n):
+        if not (1 <= x <= m and 1 <= y <= n):
             return float("inf")
         return table[y - 1][x - 1] + min(answer(*n) for n in neighbours(x, y))
 
     print(answer(m, n))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

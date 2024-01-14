@@ -1,5 +1,16 @@
+import operator
 import unittest
-from arithmetic_expression import *
+
+from arithmetic_expression import (
+    ALL_OPS,
+    DIGITS,
+    Logger,
+    PostfixConverter,
+    Reader,
+    analyze1,
+    analyze2,
+    eval_postfix,
+)
 
 
 class ReaderTests(unittest.TestCase):
@@ -53,7 +64,7 @@ class PostfixConverterTests(unittest.TestCase):
                 try:
                     true_value = eval(example)
                     self.assertEqual(value, true_value)
-                except:
+                except Exception:
                     pass
 
     def test_empty(self):

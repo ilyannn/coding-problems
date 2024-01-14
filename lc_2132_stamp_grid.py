@@ -9,10 +9,10 @@ Memory Usage: 42.8 MB, less than 66.67% of Python3 online submissions for Stampi
 
 """
 
-from itertools import chain
-from typing import List
 import random
 import unittest
+from itertools import chain
+from typing import List
 
 
 def add_arrays(arrays):

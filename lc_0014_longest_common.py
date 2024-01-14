@@ -1,7 +1,7 @@
 """14. Longest Common Prefix"""
+import unittest
 from itertools import takewhile, zip_longest
 from typing import List
-import unittest
 
 
 class Solution1:

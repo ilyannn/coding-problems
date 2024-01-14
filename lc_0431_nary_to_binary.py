@@ -1,8 +1,8 @@
 """431.  Encode N-ary Tree to Binary Tree"""
 
 import operator
-from typing import Optional
 import unittest
+from typing import Optional
 
 
 class NAryNode:

@@ -1,8 +1,10 @@
+from collections import defaultdict, deque
 from typing import List
+
 
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
-        m, n = len(board), len(board[0])
+        n = len(board[0])
         B = n + 2
 
         def g_enumerate():
@@ -13,7 +15,7 @@ class Solution:
 
         def neighbors(p):
             """List of neighboring cells"""
-            return (p + 1, p - 1, p + R, p - R)
+            return p + 1, p - 1, p + B, p - B
 
         grid = defaultdict(lambda: None) | dict(g_enumerate())
         chars = set(grid.values())

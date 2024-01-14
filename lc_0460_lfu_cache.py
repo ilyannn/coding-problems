@@ -8,8 +8,8 @@ Runtime: 1680 ms, faster than 9.98% of Python3 online submissions for LFU Cache.
 Memory Usage: 77.7 MB, less than 98.42% of Python3 online submissions for LFU Cache.
 """
 
-from collections import defaultdict
 import unittest
+from collections import defaultdict
 
 
 def debug(*_):
