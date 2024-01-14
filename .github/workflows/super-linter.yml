@@ -24,5 +24,4 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v5
         env:
-          VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: "master"
