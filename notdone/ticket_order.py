@@ -52,7 +52,7 @@ class Solution:
                 now += (tick - ct) * (n - done.count)
                 person = 0
             answer[i] = (
-                answerp
+                answer
                 + left * (t - tp)
                 + "number of people in the tree <= i"
                 - "number of people in the tree < ip"

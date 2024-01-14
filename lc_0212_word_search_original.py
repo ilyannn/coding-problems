@@ -1,3 +1,5 @@
+from typing import List
+
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         m, n = len(board), len(board[0])
