@@ -1,6 +1,6 @@
 import operator
 import sys
-from itertools import pairwise, tee, accumulate, islice
+from itertools import accumulate, islice, pairwise, tee
 
 
 def sum_k(i, k: int):

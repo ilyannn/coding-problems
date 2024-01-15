@@ -14,12 +14,13 @@ For example, 12345678987600000 will be represented as "12345...89876e5".
 
 import bisect
 import operator
+import unittest
+from collections import *
 from functools import reduce
 from itertools import *
 from string import *
-from collections import *
+
 from sortedcontainers import SortedList
-import unittest
 
 
 # noinspection PyMethodMayBeStatic
