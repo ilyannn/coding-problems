@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/redundant-connection/solutions/4598163/strip-out-the-leaves-and-the-cycle-is-revealed
-"""
+"""Strip out the leaves and the cycle is revealed.
+
 We apply topological sort to remove everything except the cycle.
 Time complexity: O(n) (we perform constant operations per vertex), assuming accessing the dictionary is constant.
 Space complexity: O(n) (we store constant additional info per node)
